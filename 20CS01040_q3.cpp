@@ -39,7 +39,7 @@ void A(int &flag, string input, int input_ind, vector<vector<string>> &steps, ve
 
         }
 
-        if(grammar[2][i] != "epsilon"){
+        if(grammar[2][i] != "ϵ"){
 
             for(int j = 0; j < grammar[2][i].size(); j++){
 
@@ -204,7 +204,7 @@ void B(int &flag, string input, int input_ind, vector<vector<string>> &steps, ve
 
         }
 
-        if(grammar[1][i] != "epsilon"){
+        if(grammar[1][i] != "ϵ"){
 
             for(int j = 0; j < grammar[1][i].size(); j++){
 
@@ -369,7 +369,7 @@ void S(int &flag, string input, int input_ind, vector<vector<string>> &steps, ve
 
         }
 
-        if(grammar[0][i] != "epsilon"){
+        if(grammar[0][i] != "ϵ"){
 
             for(int j = 0; j < grammar[0][i].size(); j++){
 
@@ -498,7 +498,6 @@ void S(int &flag, string input, int input_ind, vector<vector<string>> &steps, ve
 
 int main() {
 
-    cout << "NOTE: Here epsilon is marked as &\n";
     cout << "Enter the string\n";
     string input;
     cin >> input;
@@ -510,7 +509,7 @@ int main() {
     is_non_terminal['B']++;
     is_non_terminal['A']++;
 
-    vector<vector<string>> grammar = {{"S", "nB"}, {"B", "nBAB", "epsilon"}, {"A", "+", "x"}};
+    vector<vector<string>> grammar = {{"S", "nB"}, {"B", "nBAB", "ϵ"}, {"A", "+", "x"}};
     vector<vector<string>> steps, all_steps; //current sentential form, step, remaining input
     int input_ind = 0;
     int sent_ind = 0;
@@ -519,11 +518,6 @@ int main() {
     all_steps.push_back({sentential_form, "no production", input});
     S(flag, input, input_ind, steps, all_steps, sentential_form, sent_ind, is_non_terminal, grammar);
 
-    if(flag != 1){
-
-        all_steps.push_back({"Backtracked, Back to line : 1"});
-
-    }
 
     cout << "**********The output is****************\n";
     if(flag == 1){
